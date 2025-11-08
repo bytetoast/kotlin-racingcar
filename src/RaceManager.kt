@@ -4,4 +4,8 @@ class RaceManager() {
     fun getCars(): ArrayList<Car> {
         return cars
     }
+
+    fun addCar(carName: String) {
+        cars.add(Car(carName, 0))
+    }
 }
