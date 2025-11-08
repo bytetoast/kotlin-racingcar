@@ -10,4 +10,9 @@ class RaceManager() {
     fun addCar(carName: String) {
         cars.add(Car(carName, 0))
     }
+
+    fun processRound() {
+        for (car in cars) car.move()
+        println("\n")
+    }
 }
