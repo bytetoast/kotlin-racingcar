@@ -1,3 +1,5 @@
+package org.example.utils
+
 class Car(var name: String, var position: Int) {
     fun getName(): String {
         return name

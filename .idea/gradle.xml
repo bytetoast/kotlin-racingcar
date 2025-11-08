@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/../../../우테코2025/OpenMission/kotlin-racing-car/buildSrc" name="buildSrc">
+                <projects>
+                  <project path="$PROJECT_DIR$/../../../우테코2025/OpenMission/kotlin-racing-car/buildSrc" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../../../우테코2025/OpenMission/kotlin-racing-car" />
+            <option value="$PROJECT_DIR$/../../../우테코2025/OpenMission/kotlin-racing-car/app" />
+            <option value="$PROJECT_DIR$/../../../우테코2025/OpenMission/kotlin-racing-car/buildSrc" />
+            <option value="$PROJECT_DIR$/../../../우테코2025/OpenMission/kotlin-racing-car/utils" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

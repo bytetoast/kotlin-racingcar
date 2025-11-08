@@ -1,4 +1,8 @@
 package org.example.utils
 
-class NamesState {
+enum class NamesState {
+    WAITING,
+    SUCCESS,
+    ERROR,
+    IDLE
 }
