@@ -1,0 +1,6 @@
+enum class NamesState {
+    WAITING,
+    SUCCESS,
+    ERROR,
+    IDLE
+}
