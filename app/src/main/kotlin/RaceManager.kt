@@ -3,6 +3,7 @@ package org.example.app
 class RaceManager() {
     var cars: ArrayList<Car> = ArrayList<Car>()
 
+    @JvmName("userDefined")
     fun getCars(): ArrayList<Car> {
         return cars
     }
