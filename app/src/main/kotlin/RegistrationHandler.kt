@@ -32,6 +32,7 @@ class RegistrationHandler {
             return
         }
         carNamesState = NamesState.SUCCESS
+        confirmEntry(carsList)
     }
 
     fun matchesFormat(namesRaw: String) {
@@ -49,5 +50,23 @@ class RegistrationHandler {
             }
         }
         return names
+    }
+
+    fun confirmEntry(names: List<String>) {
+        for (name in names) {
+            cars.add(Car(name))
+        }
+    }
+
+    @JvmName("userDefined")
+    fun getCars(): ArrayList<Car> {
+        try {
+            check(carNamesState == NamesState.SUCCESS) { "자동차 이름 리스트 입력이 정상적으로 완료되지 않았습니다." }
+        } catch (e: IllegalArgumentException) {
+            println(e.message + "\n올바른 형식으로 다시 입력해주세요.")
+            awaitValidInput()
+        }
+        carNamesState = NamesState.IDLE
+        return cars
     }
 }
