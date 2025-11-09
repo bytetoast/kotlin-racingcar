@@ -2,6 +2,7 @@ package org.example.app
 
 class RegistrationHandler {
     var carNamesState = NamesState.IDLE
+    var cars: ArrayList<Car> = arrayListOf()
 
     fun startRegistration() {
         println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)")
@@ -21,9 +22,10 @@ class RegistrationHandler {
     }
 
     fun validateApplicants(namesRaw: String) {
+        var carsList: List<String> = arrayListOf()
         try {
             matchesFormat(namesRaw)
-            allNamesSatisfyLengthConstraints(namesRaw)
+            carsList = allNamesSatisfyLengthConstraints(namesRaw)
         } catch (e: IllegalArgumentException) {
             carNamesState = NamesState.ERROR
             println(e.message + "\n올바른 형식으로 다시 입력해주세요.")
@@ -39,12 +41,13 @@ class RegistrationHandler {
         }
     }
 
-    fun allNamesSatisfyLengthConstraints(namesRaw: String) {
-        val names = namesRaw.split(",")
+    fun allNamesSatisfyLengthConstraints(namesRaw: String): List<String> {
+        val names: List<String> = namesRaw.split(",")
         for (name in names) {
             if (name.length !in 1..5) {
                 throw IllegalArgumentException("자동차의 이름은 1자 이상 5자 이하여야 합니다.")
             }
         }
+        return names
     }
 }
