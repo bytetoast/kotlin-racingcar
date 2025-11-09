@@ -69,7 +69,7 @@ class RaceManager() {
         println("\n")
     }
 
-    fun displayWinningResults() {
+    fun displayWinners() {
         var max = -1
         var winners = ArrayList<String>()
         for (car in cars) {
