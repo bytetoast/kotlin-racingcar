@@ -6,4 +6,6 @@ fun main() {
 
     registrationHandler.startRegistration()
     raceManager.determineNumberOfRounds()
+    raceManager.fetchCars(registrationHandler.getCars())
+    raceManager.startRace()
 }
