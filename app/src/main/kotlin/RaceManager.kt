@@ -3,21 +3,12 @@ package org.example.app
 class RaceManager() {
     var cars: ArrayList<Car> = ArrayList<Car>()
 
-    @JvmName("userDefined")
-    fun getCars(): ArrayList<Car> {
-        return cars
-    }
-
-    fun addCar(carName: String) {
-        cars.add(Car(carName, 0))
-    }
-
     fun processRound() {
         for (car in cars) car.move()
         println("\n")
     }
 
-    fun getWinners(): String {
+    fun displayWinningResults() {
         var max = -1
         var winners = ArrayList<String>()
         for (car in cars) {
@@ -29,6 +20,6 @@ class RaceManager() {
                 winners.add(car.getName())
             }
         }
-        return winners.joinToString(", ")
+        println("최종 우승자 : " + winners.joinToString(", "))
     }
 }
