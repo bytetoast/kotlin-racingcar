@@ -11,8 +11,8 @@ class RegistrationHandler {
     }
 
     fun awaitValidInput() {
-        val namesRaw = readln()
         while (waitingForNames()) {
+            val namesRaw = readln()
             validateApplicants(namesRaw)
         }
     }

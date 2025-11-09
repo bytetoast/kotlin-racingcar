@@ -12,8 +12,8 @@ class RaceManager() {
     }
 
     fun awaitValidNumRoundsInput() {
-        val numRoundsRaw = readln()
         while (waitingForNum()) {
+            val numRoundsRaw = readln()
             validateNumRounds(numRoundsRaw)
         }
     }
