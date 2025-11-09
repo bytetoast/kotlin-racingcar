@@ -8,4 +8,5 @@ fun main() {
     raceManager.determineNumberOfRounds()
     raceManager.fetchCars(registrationHandler.getCars())
     raceManager.startRace()
+    raceManager.displayWinningResults()
 }
