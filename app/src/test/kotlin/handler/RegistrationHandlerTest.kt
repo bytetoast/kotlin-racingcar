@@ -9,6 +9,7 @@ import org.example.app.handler.RegistrationHandler
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.assertDoesNotThrow
 
 class RegistrationHandlerTest {
     private val outputStreamCaptor = ByteArrayOutputStream()
@@ -42,5 +43,68 @@ class RegistrationHandlerTest {
         handler.carNamesState = NamesState.WAITING
         val result = handler.waitingForNames()
         assertEquals(true, result, "상태는 WAITING입니다. 결과는 true여야 합니다.")
+    }
+
+    @Test
+    fun `matchesFormatTrueTest`() {
+        val handler = RegistrationHandler()
+        assertDoesNotThrow {
+            handler.matchesFormat("tom,green,blair,luke")
+        }
+    }
+
+    @Test
+    fun `matchesFormatExceptionTest`() {
+        val handler = RegistrationHandler()
+        assertFailsWith<IllegalArgumentException>("This should throw IllegalArgumentException.") {
+            handler.matchesFormat("tom,green,blair,")
+        }
+    }
+
+    @Test
+    fun `allNamesSatisfyConstraintsTrueTest`() {
+        val handler = RegistrationHandler()
+        assertDoesNotThrow {
+            handler.allNamesSatisfyConstraints("blair,car1,dean,CPU,egypt")
+        }
+    }
+
+    @Test
+    fun `allNamesSatisfyLengthConstraintsExceptionTest`() {
+        val handler = RegistrationHandler()
+        assertFailsWith<IllegalArgumentException>("This should throw IllegalArgumentException.") {
+            handler.allNamesSatisfyConstraints("tom,green,potter,blair")
+        }
+    }
+
+    @Test
+    fun `allNamesSatisfyUniqueConstraintsTrueTest`() {
+        val handler = RegistrationHandler()
+        assertDoesNotThrow {
+            handler.allNamesSatisfyConstraints("tom,green,blair,luke")
+        }
+    }
+
+    @Test
+    fun `allNamesSatisfyUniqueConstraintsExceptionTest`() {
+        val handler = RegistrationHandler()
+        assertFailsWith<IllegalArgumentException>("This should throw IllegalArgumentException.") {
+            handler.allNamesSatisfyConstraints("tom,green,blair,tom,luke")
+        }
+    }
+
+    @Test
+    fun `validateApplicantsTrueTest`() {
+        val handler = RegistrationHandler()
+        handler.validateApplicants("car2,10,brown,woods")
+        assertEquals(NamesState.SUCCESS, handler.carNamesState, "The result should be SUCCESS.")
+    }
+
+    @Test
+    fun `validateApplicantsFalseTest`() {
+        val handler = RegistrationHandler()
+        handler.validateApplicants("connecticut,court,twain")
+        val expected = "올바른 형식으로 다시 입력해주세요"
+        assertTrue(output().contains(expected))
     }
 }
