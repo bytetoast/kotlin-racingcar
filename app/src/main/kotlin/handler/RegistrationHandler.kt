@@ -1,4 +1,7 @@
-package org.example.app
+package org.example.app.handler
+
+import org.example.app.handler.NamesState
+import org.example.app.car.Car
 
 class RegistrationHandler {
     var carNamesState = NamesState.IDLE

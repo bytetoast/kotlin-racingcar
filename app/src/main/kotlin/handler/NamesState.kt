@@ -1,4 +1,4 @@
-package org.example.app
+package org.example.app.handler
 
 enum class NamesState {
     WAITING,

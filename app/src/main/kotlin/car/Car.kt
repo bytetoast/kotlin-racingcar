@@ -1,4 +1,4 @@
-package org.example.app
+package org.example.app.car
 
 class Car(val name: String) {
     var position: Int = 0

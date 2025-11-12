@@ -1,4 +1,7 @@
-package org.example.app
+package org.example.app.manager
+
+import org.example.app.manager.NumRoundsState
+import org.example.app.car.Car
 
 class RaceManager() {
     var cars: ArrayList<Car> = ArrayList<Car>()
