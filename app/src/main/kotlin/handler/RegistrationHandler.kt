@@ -1,6 +1,5 @@
 package org.example.app.handler
 
-import org.example.app.handler.NamesState
 import org.example.app.car.Car
 
 class RegistrationHandler {
@@ -28,7 +27,7 @@ class RegistrationHandler {
         var carsList: List<String> = arrayListOf()
         try {
             matchesFormat(namesRaw)
-            carsList = allNamesSatisfyLengthConstraints(namesRaw)
+            carsList = allNamesSatisfyConstraints(namesRaw)
         } catch (e: IllegalArgumentException) {
             carNamesState = NamesState.ERROR
             println(e.message + "\n올바른 형식으로 다시 입력해주세요.")
@@ -45,11 +44,17 @@ class RegistrationHandler {
         }
     }
 
-    fun allNamesSatisfyLengthConstraints(namesRaw: String): List<String> {
+    fun allNamesSatisfyConstraints(namesRaw: String): List<String> {
         val names: List<String> = namesRaw.split(",")
+        var exists: ArrayList<String> = arrayListOf()
         for (name in names) {
             if (name.length !in 1..5) {
                 throw IllegalArgumentException("자동차의 이름은 1자 이상 5자 이하여야 합니다.")
+            }
+            if (exists.contains(name)) {
+                throw IllegalArgumentException("자동차 이름 목록엔 중복이 없어야 합니다.")
+            } else {
+                exists.add(name)
             }
         }
         return names
