@@ -1,0 +1,46 @@
+package handler
+
+import java.io.ByteArrayOutputStream
+import java.io.PrintStream
+import kotlin.test.assertFailsWith
+import kotlin.test.Test
+import org.example.app.handler.NamesState
+import org.example.app.handler.RegistrationHandler
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
+
+class RegistrationHandlerTest {
+    private val outputStreamCaptor = ByteArrayOutputStream()
+
+    @BeforeEach
+    fun init() {
+        System.setOut(PrintStream(outputStreamCaptor))
+    }
+
+    @AfterEach
+    fun restoreStreams() {
+        System.setOut(System.out)
+        println(output())
+    }
+
+    fun output(): String {
+        return outputStreamCaptor.toString().trim()
+    }
+
+    @Test
+    fun `waitingForNamesSuccessTest`() {
+        val handler = RegistrationHandler()
+        handler.carNamesState = NamesState.SUCCESS
+        val result = handler.waitingForNames()
+        assertEquals(false, result, "상태가 SUCCESS로 바뀌었습니다. 결과는 false여야 합니다.")
+    }
+
+    @Test
+    fun `waitingForNamesWaitingTest`() {
+        val handler = RegistrationHandler()
+        handler.carNamesState = NamesState.WAITING
+        val result = handler.waitingForNames()
+        assertEquals(true, result, "상태는 WAITING입니다. 결과는 true여야 합니다.")
+    }
+}
