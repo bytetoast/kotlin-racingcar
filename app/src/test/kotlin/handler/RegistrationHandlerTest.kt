@@ -1,34 +1,14 @@
 package handler
 
-import java.io.ByteArrayOutputStream
-import java.io.PrintStream
 import kotlin.test.assertFailsWith
 import kotlin.test.Test
 import org.example.app.handler.NamesState
 import org.example.app.handler.RegistrationHandler
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
+import org.example.app.IOTest
 import org.junit.jupiter.api.assertDoesNotThrow
+import org.junit.jupiter.api.Assertions.*
 
-class RegistrationHandlerTest {
-    private val outputStreamCaptor = ByteArrayOutputStream()
-
-    @BeforeEach
-    fun init() {
-        System.setOut(PrintStream(outputStreamCaptor))
-    }
-
-    @AfterEach
-    fun restoreStreams() {
-        System.setOut(System.out)
-        println(output())
-    }
-
-    fun output(): String {
-        return outputStreamCaptor.toString().trim()
-    }
-
+class RegistrationHandlerTest : IOTest() {
     @Test
     fun `waitingForNamesSuccessTest`() {
         val handler = RegistrationHandler()
