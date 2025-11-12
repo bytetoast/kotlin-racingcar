@@ -107,4 +107,16 @@ class RegistrationHandlerTest {
         val expected = "올바른 형식으로 다시 입력해주세요"
         assertTrue(output().contains(expected))
     }
+
+    @Test
+    fun `confirmEntryTrueTest`() {
+        val handler = RegistrationHandler()
+        handler.confirmEntry(listOf("turke","y","pumpk","in"))
+        val expected = "turke,y,pumpk,in"
+        var actual = arrayListOf<String>()
+        for (car in handler.cars) {
+            actual.add(car.getName())
+        }
+        assertEquals(expected, actual.joinToString(","))
+    }
 }
