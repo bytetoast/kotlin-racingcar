@@ -1,6 +1,6 @@
 package org.example.app.car
 
-class Car(val name: String) {
+class Car(val name: String, val generator: RandomGenerator) {
     var position: Int = 0
 
     init {
@@ -18,7 +18,7 @@ class Car(val name: String) {
     }
 
     fun move() {
-        val randomVal: Int = (0..9).random()
+        val randomVal = generator.generateRandomNumber()
         if (randomVal >= 4) {
             position++
         }

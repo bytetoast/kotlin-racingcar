@@ -1,10 +1,13 @@
 package org.example.app.handler
 
 import org.example.app.car.Car
+import org.example.app.car.DefaultRandomGenerator
+import org.example.app.car.RandomGenerator
 
 class RegistrationHandler {
     var carNamesState = NamesState.IDLE
     var cars: ArrayList<Car> = arrayListOf()
+    val generator: RandomGenerator = DefaultRandomGenerator()
 
     fun startRegistration() {
         println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)")
@@ -62,7 +65,7 @@ class RegistrationHandler {
 
     fun confirmEntry(names: List<String>) {
         for (name in names) {
-            cars.add(Car(name))
+            cars.add(Car(name, generator))
         }
     }
 
