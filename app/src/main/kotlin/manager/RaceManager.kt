@@ -86,4 +86,14 @@ class RaceManager() {
         }
         println("최종 우승자 : " + winners.joinToString(", "))
     }
+
+    @JvmName("userDefined")
+    fun setNumRounds(rounds: Int) {
+        this.numRounds = rounds
+    }
+
+    @JvmName("userDefined")
+    fun getNumRoundsState(): NumRoundsState {
+        return this.numRoundsState
+    }
 }
